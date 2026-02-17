@@ -110,7 +110,8 @@ class MainActivity : AppCompatActivity() {
                 val width = it.intrinsicWidth
                 val height = it.intrinsicHeight
                 val resolution = "$width x $height"
-                detailsTextView.text = "Height: $height, Width: $width, Resolution: $resolution"
+                detailsTextView.text = "Height: $height, Width: $width\nResolution: $resolution"
+                detailsTextView.setTextColor("#9399b2".toColorInt())
             }
             detailsTextView.isVisible = true
             btnShowDetails.text = "Hide Details"
