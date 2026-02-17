@@ -7,13 +7,15 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
+    android:background="@color/dark_theme_background"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/card_background">
 
         <ImageSwitcher
             android:id="@+id/imageSwitcher"
@@ -34,8 +36,8 @@
             android:layout_height="wrap_content"
             android:text="Previous"
             app:cornerRadius="24dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@color/button_background"
+            android:textColor="@android:color/black"
             android:layout_marginEnd="16dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -43,8 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cornerRadius="24dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white"
+            android:backgroundTint="@color/button_background"
+            android:textColor="@android:color/black"
             android:text="Next"
             android:layout_marginStart="16dp"/>
     </LinearLayout>
@@ -63,8 +65,8 @@
         android:layout_height="wrap_content"
         android:text="Show Details"
         app:cornerRadius="24dp"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@android:color/white"
+        android:backgroundTint="@color/button_background"
+        android:textColor="@android:color/black"
         android:layout_marginTop="16dp"/>
 
     <TextView
