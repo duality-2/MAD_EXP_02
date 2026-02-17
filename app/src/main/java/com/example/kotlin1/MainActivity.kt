@@ -1,6 +1,7 @@
 package com.example.kotlin1
 
-import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Gravity
@@ -10,6 +11,9 @@ import android.widget.ImageView
 import android.widget.TextSwitcher
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.toColorInt
 import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
@@ -41,17 +45,33 @@ class MainActivity : AppCompatActivity() {
         btnShowDetails = findViewById(R.id.btnShowDetails)
         detailsTextView = findViewById(R.id.detailsTextView)
 
-        imageSwitcher.setFactory { 
+        imageSwitcher.setFactory {
             val imageView = ImageView(applicationContext)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             imageView
         }
 
         textSwitcher.setFactory {
-            val textView = TextView(applicationContext)
-            textView.textSize = 20f
-            textView.setTextColor(Color.BLACK)
+            val textView = object : AppCompatTextView(this) {
+                override fun setText(text: CharSequence?, type: BufferType?) {
+                    super.setText(text, type)
+                    if (!text.isNullOrEmpty()) {
+                        val paint = this.paint
+                        val width = paint.measureText(text.toString())
+                        val textShader: Shader = LinearGradient(0f, 0f, width, this.textSize,
+                            intArrayOf(
+                                "#F97C3C".toColorInt(),
+                                "#FDB54E".toColorInt()
+                            ),
+                            null, Shader.TileMode.CLAMP)
+                        this.paint.shader = textShader
+                    }
+                }
+            }
+            textView.textSize = 24f
             textView.gravity = Gravity.CENTER
+            val typeface = ResourcesCompat.getFont(this, R.font.dancing_script)
+            textView.typeface = typeface
             textView
         }
 
